@@ -6,10 +6,10 @@ interface Props {
 }
 
 const { href, variant = "primary", fullWidth = false } = Astro.props;
-const classes = `inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+const classes = `inline-flex items-center justify-center border px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
   variant === "primary"
-    ? "bg-amber-400 text-slate-900 hover:bg-amber-300 focus-visible:outline-amber-300"
-    : "border border-slate-300 bg-white text-slate-900 hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-slate-400"
+    ? "border-amber-300 bg-amber-300 text-slate-950 hover:bg-amber-200 hover:border-amber-200 focus-visible:outline-amber-300"
+    : "border-slate-900 bg-transparent text-slate-900 hover:bg-slate-900 hover:text-white focus-visible:outline-slate-900"
 } ${fullWidth ? "w-full" : ""}`;
 ---
 
