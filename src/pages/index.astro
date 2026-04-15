@@ -1,0 +1,238 @@
+---
+import { Image } from "astro:assets";
+import Button from "../components/ui/Button.astro";
+import Layout from "../layouts/Layout.astro";
+import homeReference from "../assets/loveable-home-reference.png";
+
+const services = [
+  {
+    title: "Rewires and Installations",
+    description:
+      "Full and partial rewires, consumer unit upgrades, and safe installation work for homes and growing businesses.",
+  },
+  {
+    title: "Fault Finding and Repairs",
+    description:
+      "Fast diagnostics with clear fixes. We explain what failed, why it happened, and how to prevent repeat issues.",
+  },
+  {
+    title: "Testing and Certification",
+    description:
+      "EICRs, landlord checks, and compliance certificates completed on schedule with straightforward reporting.",
+  },
+  {
+    title: "Commercial Electrical Work",
+    description:
+      "Planned maintenance, power and lighting upgrades, and out-of-hours support to keep operations running.",
+  },
+];
+
+const faqs = [
+  {
+    question: "How quickly can you attend urgent electrical faults?",
+    answer:
+      "For urgent issues, we aim for same-day response where possible. You will always get a clear arrival window and live updates.",
+  },
+  {
+    question: "Do you provide fixed quotes before starting work?",
+    answer:
+      "Yes. We provide itemized quotes and explain options first, so you can choose the right solution without hidden costs.",
+  },
+  {
+    question: "Are you qualified and fully insured?",
+    answer:
+      "Yes. All work is completed by qualified electricians and backed by public liability insurance for complete peace of mind.",
+  },
+];
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Tec Electrical",
+  description: "Domestic and commercial electrical services in Leicester and surrounding areas.",
+  telephone: "+447000000000",
+  email: "hello@tec-electrical.co.uk",
+  areaServed: "Leicester",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Leicester",
+    addressCountry: "GB",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Saturday"],
+      opens: "09:00",
+      closes: "14:00",
+    },
+  ],
+  url: "https://tec.dotwall.co.uk/",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://tec.dotwall.co.uk/",
+    },
+  ],
+};
+---
+
+<Layout
+  pageTitle="Trusted Electricians in Leicester | Tec Electrical"
+  pageDescription="Tec Electrical delivers reliable domestic and commercial electrical services in Leicester, from rewires to fault finding and certification."
+  schemas={[localBusinessSchema, faqSchema, breadcrumbSchema]}
+>
+  <section class="relative overflow-hidden bg-gradient-to-b from-blue-950 to-blue-900 py-20 text-white md:py-24">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.16),transparent_45%)]"></div>
+    <div class="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <div>
+        <p class="mb-4 inline-block rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-slate-100">
+          Domestic and Commercial Electrical Services
+        </p>
+        <h1 class="text-4xl font-bold leading-tight md:text-5xl">
+          Power your property with safe, precise electrical work.
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-200">
+          From emergency faults to planned upgrades, Tec Electrical delivers dependable workmanship, transparent pricing,
+          and fast communication from first call to final sign-off.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <Button href="#contact">Get My Free Quote</Button>
+          <Button href="#services" variant="secondary">Explore Services</Button>
+        </div>
+        <ul class="mt-8 grid gap-3 text-sm text-slate-100 sm:grid-cols-3">
+          <li class="rounded-lg border border-white/20 bg-white/5 px-4 py-3">Fully Qualified Team</li>
+          <li class="rounded-lg border border-white/20 bg-white/5 px-4 py-3">Clear Fixed Quotes</li>
+          <li class="rounded-lg border border-white/20 bg-white/5 px-4 py-3">Fast Response Times</li>
+        </ul>
+      </div>
+
+      <div class="rounded-2xl border border-white/20 bg-white/10 p-4 shadow-2xl backdrop-blur-sm">
+        <Image
+          src={homeReference}
+          alt="Tec Electrical homepage design reference"
+          loading="eager"
+          widths={[420, 620, 860]}
+          sizes="(max-width: 1024px) 100vw, 40vw"
+          class="h-auto w-full rounded-xl"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-20 md:py-24">
+    <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+      <header class="max-w-3xl">
+        <p class="text-sm font-semibold uppercase tracking-wider text-blue-700">What We Do</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+          Electrical services built around reliability.
+        </h2>
+        <p class="mt-4 text-lg text-slate-600">
+          Every project starts with a practical plan, clear timescales, and standards that keep your property safe and
+          compliant.
+        </p>
+      </header>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          services.map((service) => (
+            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-md">
+              <h3 class="text-xl font-semibold text-slate-900">{service.title}</h3>
+              <p class="mt-3 text-slate-600">{service.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="why-us" class="bg-white py-20 md:py-24">
+    <div class="mx-auto grid w-full max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <article class="rounded-2xl border border-slate-200 p-8">
+        <h2 class="text-2xl font-bold text-slate-900">Not sure who to trust with your electrics?</h2>
+        <p class="mt-4 text-slate-600">
+          That is a valid concern. Poor workmanship creates stress, delays, and repeat costs. We solve this with
+          documented checks, tidy installs, and communication you can rely on.
+        </p>
+        <ul class="mt-6 space-y-3 text-slate-700">
+          <li>Clear scope before work begins</li>
+          <li>Daily updates on multi-day jobs</li>
+          <li>Final handover with all certification documents</li>
+        </ul>
+      </article>
+
+      <article class="rounded-2xl bg-slate-950 p-8 text-slate-200">
+        <h2 class="text-2xl font-bold text-white">Why clients choose Tec Electrical</h2>
+        <p class="mt-4">
+          We keep projects simple: plan well, communicate clearly, and deliver to a consistently high standard.
+        </p>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
+            <p class="text-2xl font-bold text-amber-300">15+</p>
+            <p class="mt-1 text-sm">Years combined practical experience</p>
+          </div>
+          <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
+            <p class="text-2xl font-bold text-amber-300">24h</p>
+            <p class="mt-1 text-sm">Quote turnaround for standard requests</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="faq" class="py-20 md:py-24">
+    <div class="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+      <header class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-blue-700">FAQs</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">Questions we hear most often</h2>
+      </header>
+      <div class="mt-10 space-y-4">
+        {
+          faqs.map((faq) => (
+            <details class="group rounded-xl border border-slate-200 bg-white p-5">
+              <summary class="cursor-pointer list-none text-base font-semibold text-slate-900">
+                {faq.question}
+              </summary>
+              <p class="mt-3 text-slate-600">{faq.answer}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-blue-950 py-16 text-white">
+    <div class="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
+      <div>
+        <h2 class="text-3xl font-bold">Ready to book dependable electrical work?</h2>
+        <p class="mt-2 text-slate-200">Tell us what you need and we will send a clear quote with next steps.</p>
+      </div>
+      <Button href="#contact">Get My Free Quote</Button>
+    </div>
+  </section>
+</Layout>

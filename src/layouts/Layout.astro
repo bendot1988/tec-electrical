@@ -1,0 +1,35 @@
+---
+import Footer from "../components/layout/Footer.astro";
+import Header from "../components/layout/Header.astro";
+import SEO from "../components/seo/SEO.astro";
+import Schema from "../components/seo/Schema.astro";
+import "../styles/global.css";
+
+interface Props {
+  pageTitle: string;
+  pageDescription: string;
+  schemas?: Record<string, unknown>[];
+}
+
+const { pageTitle, pageDescription, schemas = [] } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <SEO title={pageTitle} description={pageDescription} />
+    <Schema schemas={schemas} />
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
