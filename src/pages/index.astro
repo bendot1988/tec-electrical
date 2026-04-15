@@ -1,47 +1,79 @@
 ---
-import { Image } from "astro:assets";
 import Button from "../components/ui/Button.astro";
 import Layout from "../layouts/Layout.astro";
-import homeReference from "../assets/loveable-home-reference.png";
 
 const services = [
   {
-    title: "Rewires and Installations",
-    description:
-      "Full and partial rewires, consumer unit upgrades, and safe installation work for homes and growing businesses.",
+    title: "Domestic Wiring and Rewires",
+    detail:
+      "Full and partial rewires, kitchen and extension wiring, and clean upgrades that futureproof your home.",
+    highlight: "No hidden extras",
   },
   {
-    title: "Fault Finding and Repairs",
-    description:
-      "Fast diagnostics with clear fixes. We explain what failed, why it happened, and how to prevent repeat issues.",
+    title: "Fault Finding and Emergency Repairs",
+    detail:
+      "Rapid diagnosis for tripping circuits, dead sockets, and unsafe electrics with clear fixes you can trust.",
+    highlight: "Fast local response",
   },
   {
-    title: "Testing and Certification",
-    description:
-      "EICRs, landlord checks, and compliance certificates completed on schedule with straightforward reporting.",
+    title: "Inspection, Testing and Certificates",
+    detail:
+      "EICRs, landlord checks, and compliance testing delivered with straightforward reports and practical advice.",
+    highlight: "Certified and compliant",
   },
   {
-    title: "Commercial Electrical Work",
-    description:
-      "Planned maintenance, power and lighting upgrades, and out-of-hours support to keep operations running.",
+    title: "Commercial Install and Maintenance",
+    detail:
+      "Lighting, power distribution, planned maintenance, and out-of-hours support for offices and retail spaces.",
+    highlight: "Minimal downtime",
+  },
+];
+
+const benefits = [
+  "Detailed quote before work starts",
+  "Clean, respectful work on every visit",
+  "Daily progress updates on larger jobs",
+  "Certification supplied at handover",
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Quick Scope Call",
+    description: "Tell us what is happening. We ask focused questions and set the right next step.",
+  },
+  {
+    step: "02",
+    title: "Fixed Plan and Quote",
+    description: "You get a clear plan, timescale, and price breakdown before tools come out.",
+  },
+  {
+    step: "03",
+    title: "Precise Delivery",
+    description: "Work is completed to regulation, tested, and signed off with tidy handover notes.",
   },
 ];
 
 const faqs = [
   {
-    question: "How quickly can you attend urgent electrical faults?",
+    question: "Can you help if another electrician has started and left the job incomplete?",
     answer:
-      "For urgent issues, we aim for same-day response where possible. You will always get a clear arrival window and live updates.",
+      "Yes. We can assess existing work, identify safety issues, and give you a practical completion plan with transparent pricing.",
   },
   {
-    question: "Do you provide fixed quotes before starting work?",
+    question: "Do you work around business opening hours?",
     answer:
-      "Yes. We provide itemized quotes and explain options first, so you can choose the right solution without hidden costs.",
+      "Yes. For commercial clients we can schedule early, late, or weekend slots to keep disruption to a minimum.",
   },
   {
-    question: "Are you qualified and fully insured?",
+    question: "How do I know what work is essential versus optional?",
     answer:
-      "Yes. All work is completed by qualified electricians and backed by public liability insurance for complete peace of mind.",
+      "We split recommendations into urgent, recommended, and optional improvements so you can make an informed decision.",
+  },
+  {
+    question: "Will I receive compliance paperwork after the job?",
+    answer:
+      "Yes. Where certification is required, we provide the relevant documentation at completion.",
   },
 ];
 
@@ -103,67 +135,88 @@ const breadcrumbSchema = {
 ---
 
 <Layout
-  pageTitle="Trusted Electricians in Leicester | Tec Electrical"
-  pageDescription="Tec Electrical delivers reliable domestic and commercial electrical services in Leicester, from rewires to fault finding and certification."
+  pageTitle="Electricians in Leicester for Homes and Business | Tec Electrical"
+  pageDescription="Tec Electrical provides fault finding, rewires, testing, and commercial electrical support in Leicester with clear quotes and safe certified work."
   schemas={[localBusinessSchema, faqSchema, breadcrumbSchema]}
 >
-  <section class="relative overflow-hidden bg-gradient-to-b from-blue-950 to-blue-900 py-20 text-white md:py-24">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.16),transparent_45%)]"></div>
-    <div class="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-      <div>
-        <p class="mb-4 inline-block rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-slate-100">
-          Domestic and Commercial Electrical Services
+  <section class="relative overflow-hidden bg-slate-950 py-20 text-white md:py-28">
+    <div class="absolute inset-0 opacity-55 [background:radial-gradient(circle_at_15%_20%,rgba(59,130,246,0.35),transparent_38%),radial-gradient(circle_at_90%_8%,rgba(251,191,36,0.25),transparent_30%),linear-gradient(120deg,#020617_10%,#0f172a_55%,#172554_100%)]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black_42%,transparent_80%)]"></div>
+
+    <div class="relative mx-auto grid w-full max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
+      <div class="max-w-2xl">
+        <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-300/30 bg-blue-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-blue-100">
+          <span class="inline-block h-2 w-2 rounded-full bg-emerald-300"></span>
+          Trusted Electrical Team in Leicester
         </p>
-        <h1 class="text-4xl font-bold leading-tight md:text-5xl">
-          Power your property with safe, precise electrical work.
+        <h1 class="text-balance text-4xl font-bold leading-tight md:text-6xl">
+          Electrical work done once, done right, and built to last.
         </h1>
         <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-200">
-          From emergency faults to planned upgrades, Tec Electrical delivers dependable workmanship, transparent pricing,
-          and fast communication from first call to final sign-off.
+          We combine technical precision with clear communication. You get safe installs, practical advice, and a smooth
+          experience from first call to final certificate.
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <Button href="#contact">Get My Free Quote</Button>
-          <Button href="#services" variant="secondary">Explore Services</Button>
+          <Button href="#contact">Book My Free Quote</Button>
+          <Button href="#process" variant="secondary">How We Work</Button>
         </div>
-        <ul class="mt-8 grid gap-3 text-sm text-slate-100 sm:grid-cols-3">
-          <li class="rounded-lg border border-white/20 bg-white/5 px-4 py-3">Fully Qualified Team</li>
-          <li class="rounded-lg border border-white/20 bg-white/5 px-4 py-3">Clear Fixed Quotes</li>
-          <li class="rounded-lg border border-white/20 bg-white/5 px-4 py-3">Fast Response Times</li>
-        </ul>
+        <div class="mt-8 grid gap-3 text-sm sm:grid-cols-3">
+          <p class="rounded-xl border border-white/15 bg-white/5 px-4 py-3">Fully insured and qualified</p>
+          <p class="rounded-xl border border-white/15 bg-white/5 px-4 py-3">Transparent pricing model</p>
+          <p class="rounded-xl border border-white/15 bg-white/5 px-4 py-3">Domestic and commercial</p>
+        </div>
       </div>
 
-      <div class="rounded-2xl border border-white/20 bg-white/10 p-4 shadow-2xl backdrop-blur-sm">
-        <Image
-          src={homeReference}
-          alt="Tec Electrical homepage design reference"
-          loading="eager"
-          widths={[420, 620, 860]}
-          sizes="(max-width: 1024px) 100vw, 40vw"
-          class="h-auto w-full rounded-xl"
-        />
+      <div class="rounded-3xl border border-white/20 bg-white/8 p-6 shadow-2xl backdrop-blur">
+        <h2 class="text-sm font-semibold uppercase tracking-[0.16em] text-blue-100">Live Project Snapshot</h2>
+        <div class="mt-5 space-y-4">
+          <article class="rounded-xl border border-emerald-300/40 bg-emerald-400/10 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-emerald-200">Emergency Fault</p>
+            <p class="mt-2 text-lg font-semibold">Ring main failure in family home</p>
+            <p class="mt-2 text-sm text-emerald-100">Diagnosed, isolated, and restored safely in one visit.</p>
+          </article>
+          <article class="rounded-xl border border-blue-300/35 bg-blue-500/10 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-blue-100">Commercial Upgrade</p>
+            <p class="mt-2 text-lg font-semibold">Retail lighting retrofit</p>
+            <p class="mt-2 text-sm text-blue-100">Lower energy usage with brighter, cleaner output for customers.</p>
+          </article>
+          <article class="rounded-xl border border-amber-300/35 bg-amber-300/10 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wide text-amber-100">Certification</p>
+            <p class="mt-2 text-lg font-semibold">Landlord EICR package</p>
+            <p class="mt-2 text-sm text-amber-50">Clear report, priority fixes, and completed compliance paperwork.</p>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="services" class="py-20 md:py-24">
+  <section class="border-y border-slate-200/70 bg-white py-10">
+    <div class="mx-auto grid w-full max-w-6xl gap-4 px-4 text-sm font-medium text-slate-700 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+      <p class="rounded-full bg-slate-100 px-4 py-2 text-center">NICEIC-ready standards</p>
+      <p class="rounded-full bg-slate-100 px-4 py-2 text-center">Fast quote turnaround</p>
+      <p class="rounded-full bg-slate-100 px-4 py-2 text-center">Tidy site policy</p>
+      <p class="rounded-full bg-slate-100 px-4 py-2 text-center">Leicester-based team</p>
+    </div>
+  </section>
+
+  <section id="services" class="bg-slate-50 py-20 md:py-24">
     <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
       <header class="max-w-3xl">
-        <p class="text-sm font-semibold uppercase tracking-wider text-blue-700">What We Do</p>
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
-          Electrical services built around reliability.
-        </h2>
+        <p class="text-sm font-semibold uppercase tracking-wider text-blue-700">Core Services</p>
+        <h2 class="mt-3 text-balance text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">Expert support for homes and business premises.</h2>
         <p class="mt-4 text-lg text-slate-600">
-          Every project starts with a practical plan, clear timescales, and standards that keep your property safe and
-          compliant.
+          We focus on outcomes that matter: safety, clarity, and long-term reliability.
         </p>
       </header>
 
       <div class="mt-10 grid gap-6 md:grid-cols-2">
         {
           services.map((service) => (
-            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-md">
+            <article class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg">
+              <p class="text-xs font-semibold uppercase tracking-wide text-blue-700">{service.highlight}</p>
               <h3 class="text-xl font-semibold text-slate-900">{service.title}</h3>
-              <p class="mt-3 text-slate-600">{service.description}</p>
+              <p class="mt-3 text-slate-600">{service.detail}</p>
+              <p class="mt-5 text-sm font-semibold text-slate-900 transition-colors group-hover:text-blue-700">Learn more -></p>
             </article>
           ))
         }
@@ -171,45 +224,73 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-  <section id="why-us" class="bg-white py-20 md:py-24">
+  <section id="process" class="bg-white py-20 md:py-24">
     <div class="mx-auto grid w-full max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-      <article class="rounded-2xl border border-slate-200 p-8">
-        <h2 class="text-2xl font-bold text-slate-900">Not sure who to trust with your electrics?</h2>
-        <p class="mt-4 text-slate-600">
-          That is a valid concern. Poor workmanship creates stress, delays, and repeat costs. We solve this with
-          documented checks, tidy installs, and communication you can rely on.
+      <article>
+        <p class="text-sm font-semibold uppercase tracking-wider text-blue-700">Our Approach</p>
+        <h2 class="mt-3 text-balance text-3xl font-bold text-slate-900 md:text-5xl">No guesswork. No surprises. Just a clean process.</h2>
+        <p class="mt-5 text-lg text-slate-600">
+          Most electrical stress comes from poor communication and vague pricing. We remove both.
         </p>
-        <ul class="mt-6 space-y-3 text-slate-700">
-          <li>Clear scope before work begins</li>
-          <li>Daily updates on multi-day jobs</li>
-          <li>Final handover with all certification documents</li>
+        <ul class="mt-7 space-y-3 text-slate-700">
+          {
+            benefits.map((item) => (
+              <li class="flex items-start gap-3 rounded-lg bg-slate-100 px-4 py-3">
+                <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-blue-600"></span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
         </ul>
       </article>
 
       <article class="rounded-2xl bg-slate-950 p-8 text-slate-200">
-        <h2 class="text-2xl font-bold text-white">Why clients choose Tec Electrical</h2>
-        <p class="mt-4">
-          We keep projects simple: plan well, communicate clearly, and deliver to a consistently high standard.
-        </p>
-        <div class="mt-6 grid gap-4 sm:grid-cols-2">
-          <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
-            <p class="text-2xl font-bold text-amber-300">15+</p>
-            <p class="mt-1 text-sm">Years combined practical experience</p>
-          </div>
-          <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
-            <p class="text-2xl font-bold text-amber-300">24h</p>
-            <p class="mt-1 text-sm">Quote turnaround for standard requests</p>
-          </div>
+        <h3 class="text-xl font-bold text-white">How your project moves forward</h3>
+        <div class="mt-6 space-y-4">
+          {
+            process.map((item) => (
+              <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
+                <p class="text-xs font-semibold tracking-[0.2em] text-amber-300">STEP {item.step}</p>
+                <p class="mt-1 text-lg font-semibold text-white">{item.title}</p>
+                <p class="mt-2 text-sm text-slate-300">{item.description}</p>
+              </div>
+            ))
+          }
         </div>
       </article>
     </div>
   </section>
 
-  <section id="faq" class="py-20 md:py-24">
+  <section id="why-us" class="bg-slate-50 py-20 md:py-24">
+    <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-gradient-to-r from-blue-900 to-blue-700 p-8 text-white md:p-12">
+        <p class="text-sm font-semibold uppercase tracking-wider text-blue-100">Why Choose Tec Electrical</p>
+        <h2 class="mt-3 max-w-3xl text-balance text-3xl font-bold md:text-5xl">
+          We are the team clients call when they want quality without the drama.
+        </h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+          <div class="rounded-xl bg-white/12 p-5">
+            <p class="text-3xl font-bold text-amber-300">98%</p>
+            <p class="mt-2 text-sm text-blue-100">Jobs completed on first planned timeline</p>
+          </div>
+          <div class="rounded-xl bg-white/12 p-5">
+            <p class="text-3xl font-bold text-amber-300">24h</p>
+            <p class="mt-2 text-sm text-blue-100">Typical quotation response window</p>
+          </div>
+          <div class="rounded-xl bg-white/12 p-5">
+            <p class="text-3xl font-bold text-amber-300">5★</p>
+            <p class="mt-2 text-sm text-blue-100">Reputation built on clarity and care</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="bg-white py-20 md:py-24">
     <div class="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
       <header class="text-center">
         <p class="text-sm font-semibold uppercase tracking-wider text-blue-700">FAQs</p>
-        <h2 class="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">Questions we hear most often</h2>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">Questions people ask before booking</h2>
       </header>
       <div class="mt-10 space-y-4">
         {
@@ -226,11 +307,11 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-  <section class="bg-blue-950 py-16 text-white">
+  <section class="bg-slate-950 py-16 text-white">
     <div class="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
       <div>
-        <h2 class="text-3xl font-bold">Ready to book dependable electrical work?</h2>
-        <p class="mt-2 text-slate-200">Tell us what you need and we will send a clear quote with next steps.</p>
+        <h2 class="text-3xl font-bold">Ready for electrical work that actually feels organised?</h2>
+        <p class="mt-2 text-slate-200">Send your requirements and get a clear quote with practical next steps.</p>
       </div>
       <Button href="#contact">Get My Free Quote</Button>
     </div>
