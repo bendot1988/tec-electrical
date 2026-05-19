@@ -9,8 +9,8 @@ import {
 } from "./contact";
 
 function getResendConfig() {
-  const apiKey = import.meta.env.RESEND_API_KEY;
-  const from = import.meta.env.RESEND_FROM_EMAIL;
+  const apiKey = import.meta.env.RESEND_API_KEY ?? process.env.RESEND_API_KEY;
+  const from = import.meta.env.RESEND_FROM_EMAIL ?? process.env.RESEND_FROM_EMAIL;
 
   if (!apiKey) {
     throw new Error("RESEND_API_KEY is not configured.");

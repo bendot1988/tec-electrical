@@ -6,126 +6,172 @@ const fieldClass =
 const labelClass = "mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-slate-300";
 ---
 
-<form id="contact-form" class="mt-6 space-y-4" novalidate>
-  <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
-    <label for="website">Website</label>
-    <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
-  </div>
-
-  <div>
-    <label class={labelClass} for="name">Full name</label>
-    <input class={fieldClass} id="name" name="name" type="text" required autocomplete="name" placeholder="Your name" />
-  </div>
-
-  <div class="grid gap-4 sm:grid-cols-2">
-    <div>
-      <label class={labelClass} for="email">Email</label>
-      <input
-        class={fieldClass}
-        id="email"
-        name="email"
-        type="email"
-        required
-        autocomplete="email"
-        placeholder="you@example.com"
-      />
-    </div>
-    <div>
-      <label class={labelClass} for="phone">Phone (optional)</label>
-      <input
-        class={fieldClass}
-        id="phone"
-        name="phone"
-        type="tel"
-        autocomplete="tel"
-        placeholder="+44 7000 000000"
-      />
-    </div>
-  </div>
-
-  <div>
-    <label class={labelClass} for="service">Service (optional)</label>
-    <select class={fieldClass} id="service" name="service">
-      <option value="">Select a service</option>
-      {SERVICE_OPTIONS.map((option) => <option value={option}>{option}</option>)}
-    </select>
-  </div>
-
-  <div>
-    <label class={labelClass} for="message">Message</label>
-    <textarea
-      class={`${fieldClass} min-h-[120px] resize-y`}
-      id="message"
-      name="message"
-      required
-      placeholder="Tell us about your project or issue…"></textarea>
-  </div>
-
-  <button
-    type="submit"
-    id="contact-form-submit"
-    class="inline-flex w-full items-center justify-center border border-amber-300 bg-amber-300 px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-slate-950 transition-all duration-200 hover:border-amber-200 hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+<div id="contact-form-wrapper" class="mt-6">
+  <div
+    id="contact-form-success"
+    class="hidden rounded border border-emerald-400 bg-emerald-500/15 px-5 py-4 text-center"
+    role="status"
+    aria-live="polite"
+    tabindex="-1"
   >
-    Send enquiry
-  </button>
+    <p class="text-sm font-bold uppercase tracking-[0.1em] text-emerald-300">Message sent</p>
+    <p class="mt-2 text-base leading-relaxed text-emerald-50">
+      Thank you! One of the team will be in touch very soon.
+    </p>
+  </div>
 
-  <p id="contact-form-status" class="hidden" role="status" aria-live="polite"></p>
-</form>
+  <p
+    id="contact-form-error"
+    class="mb-4 hidden rounded border border-red-500 bg-red-500/15 px-4 py-3 text-sm text-red-100"
+    role="alert"
+    aria-live="assertive"
+  ></p>
 
-<script>
-  const form = document.getElementById("contact-form");
-  if (!form) throw new Error("Contact form not found");
+  <form id="contact-form" class="space-y-4" novalidate>
+    <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+      <label for="website">Website</label>
+      <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
 
-  const statusEl = document.getElementById("contact-form-status");
-  const submitBtn = document.getElementById("contact-form-submit");
+    <div>
+      <label class={labelClass} for="name">Full name</label>
+      <input class={fieldClass} id="name" name="name" type="text" required autocomplete="name" placeholder="Your name" />
+    </div>
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (!(form instanceof HTMLFormElement) || !statusEl || !submitBtn) return;
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div>
+        <label class={labelClass} for="email">Email</label>
+        <input
+          class={fieldClass}
+          id="email"
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+          placeholder="you@example.com"
+        />
+      </div>
+      <div>
+        <label class={labelClass} for="phone">Phone (optional)</label>
+        <input
+          class={fieldClass}
+          id="phone"
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          placeholder="+44 7000 000000"
+        />
+      </div>
+    </div>
 
-    const formData = new FormData(form);
-    const payload = {
-      name: String(formData.get("name") ?? "").trim(),
-      email: String(formData.get("email") ?? "").trim(),
-      phone: String(formData.get("phone") ?? "").trim(),
-      service: String(formData.get("service") ?? "").trim(),
-      message: String(formData.get("message") ?? "").trim(),
-      website: String(formData.get("website") ?? "").trim(),
-    };
+    <div>
+      <label class={labelClass} for="service">Service (optional)</label>
+      <select class={fieldClass} id="service" name="service">
+        <option value="">Select a service</option>
+        {SERVICE_OPTIONS.map((option) => <option value={option}>{option}</option>)}
+      </select>
+    </div>
 
-    statusEl.textContent = "";
-    statusEl.className = "hidden";
-    submitBtn.setAttribute("disabled", "true");
-    submitBtn.textContent = "Sending…";
+    <div>
+      <label class={labelClass} for="message">Message</label>
+      <textarea
+        class={`${fieldClass} min-h-[120px] resize-y`}
+        id="message"
+        name="message"
+        required
+        placeholder="Tell us about your project or issue…"></textarea>
+    </div>
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+    <button
+      type="submit"
+      id="contact-form-submit"
+      class="inline-flex w-full items-center justify-center border border-amber-300 bg-amber-300 px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-slate-950 transition-all duration-200 hover:border-amber-200 hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+    >
+      Send enquiry
+    </button>
+  </form>
+</div>
 
-      const result = await response.json();
+<script is:inline>
+  (function () {
+    const wrapper = document.getElementById("contact-form-wrapper");
+    const form = document.getElementById("contact-form");
+    const successEl = document.getElementById("contact-form-success");
+    const errorEl = document.getElementById("contact-form-error");
+    const submitBtn = document.getElementById("contact-form-submit");
 
-      if (!response.ok) {
-        throw new Error(result.error || "Unable to send your message.");
-      }
+    if (!wrapper || !form || !successEl || !errorEl || !submitBtn) return;
 
-      form.reset();
-      statusEl.textContent =
-        "Thank you — your message has been sent. We will reply to the email address you provided.";
-      statusEl.className =
-        "mt-4 border border-emerald-700 bg-emerald-950/40 px-4 py-3 text-sm text-emerald-100";
-    } catch (error) {
-      statusEl.textContent =
-        error instanceof Error
-          ? error.message
-          : "Unable to send your message. Please try again or email info@tecservicesltd.com.";
-      statusEl.className =
-        "mt-4 border border-red-800 bg-red-950/40 px-4 py-3 text-sm text-red-100";
-    } finally {
-      submitBtn.removeAttribute("disabled");
-      submitBtn.textContent = "Send enquiry";
+    function hideError() {
+      errorEl.textContent = "";
+      errorEl.classList.add("hidden");
     }
-  });
+
+    function showError(message) {
+      successEl.classList.add("hidden");
+      form.classList.remove("hidden");
+      errorEl.textContent = message;
+      errorEl.classList.remove("hidden");
+    }
+
+    function showSuccess() {
+      hideError();
+      form.reset();
+      form.classList.add("hidden");
+      successEl.classList.remove("hidden");
+      successEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      successEl.focus({ preventScroll: true });
+    }
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      hideError();
+
+      const formData = new FormData(form);
+      const payload = {
+        name: String(formData.get("name") ?? "").trim(),
+        email: String(formData.get("email") ?? "").trim(),
+        phone: String(formData.get("phone") ?? "").trim(),
+        service: String(formData.get("service") ?? "").trim(),
+        message: String(formData.get("message") ?? "").trim(),
+        website: String(formData.get("website") ?? "").trim(),
+      };
+
+      submitBtn.setAttribute("disabled", "true");
+      submitBtn.textContent = "Sending…";
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        let result = {};
+        try {
+          result = await response.json();
+        } catch {
+          /* non-JSON response */
+        }
+
+        if (!response.ok || result.ok !== true) {
+          throw new Error(
+            result.error ||
+              "Unable to send your message. Please try again or email info@tecservicesltd.com.",
+          );
+        }
+
+        showSuccess();
+      } catch (error) {
+        showError(
+          error instanceof Error
+            ? error.message
+            : "Unable to send your message. Please try again or email info@tecservicesltd.com.",
+        );
+      } finally {
+        submitBtn.removeAttribute("disabled");
+        submitBtn.textContent = "Send enquiry";
+      }
+    });
+  })();
 </script>

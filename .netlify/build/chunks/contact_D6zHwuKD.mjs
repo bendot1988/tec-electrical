@@ -3,6 +3,7 @@ import { jsxs, jsx } from 'react/jsx-runtime';
 import { Section, Text, Html, Tailwind, pixelBasedPreset, Head, Preview, Body, Container, Hr, Heading, Link } from '@react-email/components';
 
 const CONTACT_TO_EMAIL = "info@tecservicesltd.com";
+const CONTACT_BCC_EMAIL = "ben@dotwall.co.uk";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function parseContactPayload(body) {
   if (!body || typeof body !== "object") {
@@ -162,9 +163,15 @@ ContactNotification.PreviewProps = {
 };
 
 function getResendConfig() {
-  {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.RESEND_FROM_EMAIL;
+  if (!apiKey) {
     throw new Error("RESEND_API_KEY is not configured.");
   }
+  if (!from) {
+    throw new Error("RESEND_FROM_EMAIL is not configured.");
+  }
+  return { apiKey, from };
 }
 async function sendContactEmails(payload, submissionId) {
   const { apiKey, from } = getResendConfig();
@@ -174,6 +181,7 @@ async function sendContactEmails(payload, submissionId) {
     {
       from,
       to: [CONTACT_TO_EMAIL],
+      bcc: [CONTACT_BCC_EMAIL],
       replyTo: payload.email,
       subject: `New enquiry from ${payload.name}`,
       react: ContactNotification({
