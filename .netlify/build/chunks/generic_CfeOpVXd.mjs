@@ -1,6 +1,6 @@
 import { isRemotePath } from '@astrojs/internal-helpers/path';
 import { isRemoteAllowed } from '@astrojs/internal-helpers/remote';
-import { A as AstroError, I as InvalidComponentArgs, N as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, R as RemoteImageNotAllowed, E as ExpectedImage, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, a as IncompatibleDescriptorOptions, b as UnsupportedImageConversion, c as InvalidImageService, d as ExpectedImageOptions, e as ExpectedNotESMImage, f as ImageMissingAlt, m as maybeRenderHead, g as addAttribute, s as spreadAttributes, r as renderTemplate, h as FontFamilyNotFound, u as unescapeHTML, i as MissingGetFontFileRequestUrl } from './ssr-function_KDKw0OE_.mjs';
+import { A as AstroError, I as InvalidComponentArgs, N as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, R as RemoteImageNotAllowed, E as ExpectedImage, L as LocalImageUsedWrongly, M as MissingImageDimension, U as UnsupportedImageFormat, a as IncompatibleDescriptorOptions, b as UnsupportedImageConversion, c as InvalidImageService, d as ExpectedImageOptions, e as ExpectedNotESMImage, f as ImageMissingAlt, m as maybeRenderHead, g as addAttribute, s as spreadAttributes, r as renderTemplate, h as FontFamilyNotFound, u as unescapeHTML, i as MissingGetFontFileRequestUrl } from './ssr-function_Erf1N31V.mjs';
 import 'clsx';
 import * as mime from 'mrmime';
 import 'piccolore';
@@ -1481,7 +1481,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './image-service_CJnypXDu.mjs'
+      './image-service_C0fD4YQR.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -1679,7 +1679,7 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
   }
   const { class: className, ...attributes } = { ...additionalAttributes, ...image.attributes };
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}>`;
-}, "/Users/benwall/Documents/Takeout/dotwall/dotwall/tec-electrical-cursor-astro/tec-electrical/node_modules/astro/components/Image.astro", void 0);
+}, "/Users/dotwall/Documents/tec-electrical-cursor/tec-electrical/node_modules/astro/components/Image.astro", void 0);
 
 const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$props, $$slots);
@@ -1756,7 +1756,7 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
     const srcsetAttribute = props.densities || !props.densities && !props.widths && !useResponsive ? `${image.src}${image.srcSet.values.length > 0 ? ", " + image.srcSet.attribute : ""}` : image.srcSet.attribute;
     return renderTemplate`<source${addAttribute(srcsetAttribute, "srcset")}${addAttribute(mime.lookup(image.options.format ?? image.src) ?? `image/${image.options.format}`, "type")}${spreadAttributes(sourceAdditionalAttributes)}>`;
   })}  <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}> </picture>`;
-}, "/Users/benwall/Documents/Takeout/dotwall/dotwall/tec-electrical-cursor-astro/tec-electrical/node_modules/astro/components/Picture.astro", void 0);
+}, "/Users/dotwall/Documents/tec-electrical-cursor/tec-electrical/node_modules/astro/components/Picture.astro", void 0);
 
 const componentDataByCssVariable = new Map([]);
 
@@ -1808,7 +1808,7 @@ const $$Font = createComponent(($$result, $$props, $$slots) => {
   }
   const filteredPreloadData = filterPreloads(data.preloads, preload);
   return renderTemplate`<style>${unescapeHTML(data.css)}</style>${filteredPreloadData?.map(({ url, type }) => renderTemplate`<link rel="preload"${addAttribute(url, "href")} as="font"${addAttribute(`font/${type}`, "type")} crossorigin>`)}`;
-}, "/Users/benwall/Documents/Takeout/dotwall/dotwall/tec-electrical-cursor-astro/tec-electrical/node_modules/astro/components/Font.astro", void 0);
+}, "/Users/dotwall/Documents/tec-electrical-cursor/tec-electrical/node_modules/astro/components/Font.astro", void 0);
 
 class SsrRuntimeFontFileUrlResolver {
   #urls;
