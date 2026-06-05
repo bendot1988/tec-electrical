@@ -1,0 +1,245 @@
+---
+import Button from "../../components/ui/Button.astro";
+import Layout from "../../layouts/Layout.astro";
+import { theKilnsProject as project } from "../../lib/projects";
+
+const pageUrl = "https://tec.dotwall.co.uk/projects/the-kilns/";
+
+const creativeWorkSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: `${project.name} by ${project.client}`,
+  about: project.scope,
+  creator: {
+    "@type": "Organization",
+    name: "Tec Electrical",
+    url: "https://tec.dotwall.co.uk/",
+  },
+  contributor: {
+    "@type": "Organization",
+    name: project.client,
+  },
+  contentLocation: {
+    "@type": "Place",
+    name: project.location,
+  },
+  dateCreated: project.year,
+  description: project.summary,
+  image: project.gallery.map((image) => `https://tec.dotwall.co.uk${image.src}`),
+  url: pageUrl,
+};
+
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: project.video.title,
+  description: project.video.description,
+  thumbnailUrl: `https://i.ytimg.com/vi/${project.video.id}/hqdefault.jpg`,
+  embedUrl: `https://www.youtube-nocookie.com/embed/${project.video.id}`,
+  contentUrl: `https://www.youtube.com/watch?v=${project.video.id}`,
+  uploadDate: `${project.year}-01-01`,
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://tec.dotwall.co.uk/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Projects",
+      item: "https://tec.dotwall.co.uk/#projects",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: project.name,
+      item: pageUrl,
+    },
+  ],
+};
+---
+
+<Layout
+  pageTitle={`${project.name} - ${project.client} | Tec Electrical Case Study`}
+  pageDescription={project.summary}
+  schemas={[creativeWorkSchema, videoSchema, breadcrumbSchema]}
+>
+  <section class="relative overflow-hidden bg-slate-950 py-20 text-white md:py-24">
+    <div class="absolute inset-0 opacity-50 [background:radial-gradient(circle_at_10%_20%,rgba(56,189,248,0.35),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(251,191,36,0.3),transparent_34%),linear-gradient(120deg,#020617_0%,#0f172a_48%,#1e3a8a_100%)]"></div>
+    <div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="text-xs font-bold uppercase tracking-[0.16em] text-slate-300">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href="/" class="hover:text-amber-300">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/#projects" class="hover:text-amber-300">Projects</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-amber-300">{project.name}</li>
+        </ol>
+      </nav>
+
+      <div class="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+        <article>
+          <p class="section-kicker text-slate-200" data-step="01">Case Study</p>
+          <h1 class="mt-5 text-balance text-5xl font-black uppercase leading-[0.95] md:text-7xl">
+            {project.name}
+            <span class="block text-amber-300">with {project.client}</span>
+          </h1>
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-slate-200 md:text-lg">
+            {project.summary}
+          </p>
+        </article>
+
+        <dl class="grid gap-px overflow-hidden border border-slate-700 bg-slate-700 sm:grid-cols-2">
+          <div class="bg-slate-900 p-5">
+            <dt class="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Client</dt>
+            <dd class="mt-2 text-sm font-bold uppercase tracking-wide text-white">{project.client}</dd>
+          </div>
+          <div class="bg-slate-900 p-5">
+            <dt class="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Project</dt>
+            <dd class="mt-2 text-sm font-bold uppercase tracking-wide text-white">{project.name}</dd>
+          </div>
+          <div class="bg-slate-900 p-5">
+            <dt class="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Location</dt>
+            <dd class="mt-2 text-sm font-bold uppercase tracking-wide text-white">{project.location}</dd>
+          </div>
+          <div class="bg-slate-900 p-5">
+            <dt class="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Year</dt>
+            <dd class="mt-2 text-sm font-bold uppercase tracking-wide text-white">{project.year}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 py-16 md:py-20">
+    <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+      <figure class="relative overflow-hidden border border-slate-200 bg-slate-900">
+        <img
+          src={project.hero.src}
+          alt={project.hero.alt}
+          loading="eager"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+        <figcaption class="absolute bottom-0 left-0 right-0 flex flex-wrap items-end justify-between gap-3 bg-gradient-to-t from-black/75 via-black/30 to-transparent px-5 py-5 text-white">
+          <span class="text-xs font-bold uppercase tracking-[0.18em] text-amber-300">Featured Build</span>
+          <span class="text-xs font-medium uppercase tracking-[0.12em] text-slate-100">{project.scope}</span>
+        </figcaption>
+      </figure>
+
+      <div class="mt-10 grid gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
+        <article class="flex flex-col justify-between border border-slate-200 bg-white p-6 md:p-8">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">{project.video.label}</p>
+            <h2 class="mt-3 text-2xl font-black uppercase leading-tight text-slate-900">
+              See the development in motion.
+            </h2>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
+              {project.video.description}
+            </p>
+          </div>
+          <a
+            href={`https://www.youtube.com/watch?v=${project.video.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-flex items-center gap-2 self-start text-xs font-bold uppercase tracking-[0.14em] text-slate-900 transition-colors hover:text-blue-700"
+          >
+            Watch on YouTube
+            <span aria-hidden="true">-></span>
+          </a>
+        </article>
+
+        <div class="relative aspect-video w-full overflow-hidden border border-slate-200 bg-slate-900 shadow-sm">
+          <iframe
+            class="absolute inset-0 h-full w-full"
+            src={`https://www.youtube-nocookie.com/embed/${project.video.id}?rel=0`}
+            title={project.video.title}
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+        <article class="border border-slate-200 bg-white p-6 md:p-8">
+          <p class="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">Scope of works</p>
+          <h2 class="mt-3 text-2xl font-black uppercase leading-tight text-slate-900">Lighting designed room by room.</h2>
+          <ul class="mt-5 space-y-3">
+            {
+              project.highlights.map((item) => (
+                <li class="flex gap-3 border-l-2 border-amber-300 bg-slate-50 px-4 py-3 text-sm text-slate-700">
+                  <span class="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">+</span>
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </article>
+
+        <article class="grid grid-cols-2 gap-3">
+          {
+            project.gallery.slice(0, 4).map((image) => (
+              <figure class="group relative overflow-hidden border border-slate-200 bg-slate-100">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="aspect-[4/5] h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent p-3 text-[11px] font-bold uppercase tracking-[0.12em] text-white">
+                  {image.caption}
+                </figcaption>
+              </figure>
+            ))
+          }
+        </article>
+      </div>
+
+      <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        {
+          project.gallery.slice(4).map((image) => (
+            <figure class="group relative overflow-hidden border border-slate-200 bg-slate-100">
+              <img
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                decoding="async"
+                class="aspect-[3/4] h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent p-3 text-[11px] font-bold uppercase tracking-[0.12em] text-white">
+                {image.caption}
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-950 py-16 text-white">
+    <div class="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
+      <div>
+        <h2 class="text-3xl font-black uppercase leading-tight">
+          Planning a development or self-build of your own?
+        </h2>
+        <p class="mt-2 text-slate-200">
+          We work end-to-end with builders, designers, and homeowners. Let's scope your project together.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <Button href="/#contact">Start a Project</Button>
+        <Button href="/" variant="secondary">Back to Home</Button>
+      </div>
+    </div>
+  </section>
+</Layout>

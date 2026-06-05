@@ -1,6 +1,7 @@
 ---
 import Button from "../components/ui/Button.astro";
 import Layout from "../layouts/Layout.astro";
+import { theKilnsProject } from "../lib/projects";
 
 const services = [
   {
@@ -50,81 +51,12 @@ const process = [
   },
 ];
 
-const featuredProject = {
-  kicker: "Featured Project",
-  client: "Stronghold Homes",
-  name: "The Kilns",
-  year: "2026",
-  location: "Leicestershire",
-  scope: "Full electrical installation across luxury new build homes",
-  summary:
-    "A signature collaboration with Stronghold Homes delivering complete first and second fix electrical works across this private development of luxury family homes. Every room was planned around statement lighting, layered scene control, and integrated detail.",
-  highlights: [
-    "Statement chandeliers across double-height voids and stairwells",
-    "Concealed LED cove lighting and backlit feature walls in every reception room",
-    "Kitchen pendant clusters, ceiling speakers, and full appliance circuits",
-    "Wardrobe and dressing room LED profiles with bespoke shelf lighting",
-    "External wall up/downlights, bollard runs, and night-time scene control",
-  ],
-  hero: {
-    src: "/projects/the-kilns/exterior-sunset.png",
-    alt: "The Kilns development by Stronghold Homes photographed at golden hour, showing a row of luxury family homes.",
-  },
-  video: {
-    id: "P9JQ9nkGQ4U",
-    title: "The Kilns development walkthrough by Stronghold Homes",
-    label: "Development walkthrough",
-    description:
-      "Tour the finished development with Stronghold Homes and see the spaces where our lighting and electrical installation comes together.",
-  },
-  gallery: [
-    {
-      src: "/projects/the-kilns/kitchen.png",
-      alt: "Open plan kitchen with pendant cluster, recessed downlights, ceiling speakers, and integrated appliances.",
-      caption: "Kitchen lighting design",
-    },
-    {
-      src: "/projects/the-kilns/lounge-shelves.png",
-      alt: "Formal lounge with backlit display shelving, statement pendant, and bioethanol fireplace wall.",
-      caption: "Backlit display joinery",
-    },
-    {
-      src: "/projects/the-kilns/snug-panelled.png",
-      alt: "Navy panelled snug with brass and glass chandelier and integrated LED-lit alcove shelving.",
-      caption: "Panelled snug with feature lighting",
-    },
-    {
-      src: "/projects/the-kilns/living-room-cove.png",
-      alt: "Living room with cove perimeter lighting, ribbed alcove shelving, and a six-arm ceiling pendant.",
-      caption: "Cove and alcove scenes",
-    },
-    {
-      src: "/projects/the-kilns/snug-cove-lighting.png",
-      alt: "Snug with chandelier, paired wall sconces, LED cove perimeter and flush ceiling speaker.",
-      caption: "Layered media room scene",
-    },
-    {
-      src: "/projects/the-kilns/bathroom-feature-tile.png",
-      alt: "Bathroom with freestanding tub and dramatic backlit gold chevron tile feature wall.",
-      caption: "Backlit bathroom feature wall",
-    },
-    {
-      src: "/projects/the-kilns/arched-alcove.png",
-      alt: "Marble step landing with arched, backlit wallpaper feature and overhead spot.",
-      caption: "Arched feature niche",
-    },
-    {
-      src: "/projects/the-kilns/exterior-front.png",
-      alt: "Front elevation of The Kilns at dusk showing the family of homes across the development.",
-      caption: "Front elevation",
-    },
-    {
-      src: "/projects/the-kilns/driveway-dusk.png",
-      alt: "Driveway at dusk with bollard pathway lighting and twin entrance wall sconces.",
-      caption: "Driveway and exterior lighting",
-    },
-  ],
-};
+const teaserThumbnails = [
+  theKilnsProject.gallery[0],
+  theKilnsProject.gallery[2],
+  theKilnsProject.gallery[5],
+];
+const projectUrl = `/projects/${theKilnsProject.slug}/`;
 
 const faqs = [
   {
@@ -308,143 +240,82 @@ const breadcrumbSchema = {
     </div>
   </section>
 
-  <section id="projects" class="bg-slate-50 py-20 md:py-28">
+  <section id="projects" class="bg-slate-50 py-20 md:py-24">
     <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-      <header class="grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-end">
-        <div>
-          <p class="section-kicker text-slate-700" data-step="04">{featuredProject.kicker}</p>
-          <h2 class="mt-4 text-balance text-3xl font-black uppercase leading-tight text-slate-900 md:text-5xl">
-            {featuredProject.name}
-            <span class="block text-blue-700">with {featuredProject.client}</span>
-          </h2>
-        </div>
-        <p class="text-base leading-relaxed text-slate-600 md:text-lg">
-          {featuredProject.summary}
+      <header class="max-w-4xl">
+        <p class="section-kicker text-slate-700" data-step="04">{theKilnsProject.kicker}</p>
+        <h2 class="mt-4 text-balance text-3xl font-black uppercase leading-tight text-slate-900 md:text-5xl">
+          Selected work, delivered with intent.
+        </h2>
+        <p class="mt-4 max-w-2xl text-slate-600 md:text-lg">
+          A glimpse at one of our recent collaborations. Explore the full case study for project detail, lighting design, and the finished result.
         </p>
       </header>
 
-      <dl class="mt-10 grid gap-px overflow-hidden border border-slate-200 bg-slate-200 md:grid-cols-4">
-        <div class="bg-white p-5">
-          <dt class="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Client</dt>
-          <dd class="mt-2 text-sm font-bold uppercase tracking-wide text-slate-900">{featuredProject.client}</dd>
-        </div>
-        <div class="bg-white p-5">
-          <dt class="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Project</dt>
-          <dd class="mt-2 text-sm font-bold uppercase tracking-wide text-slate-900">{featuredProject.name}</dd>
-        </div>
-        <div class="bg-white p-5">
-          <dt class="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Location</dt>
-          <dd class="mt-2 text-sm font-bold uppercase tracking-wide text-slate-900">{featuredProject.location}</dd>
-        </div>
-        <div class="bg-white p-5">
-          <dt class="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Year</dt>
-          <dd class="mt-2 text-sm font-bold uppercase tracking-wide text-slate-900">{featuredProject.year}</dd>
-        </div>
-      </dl>
+      <a
+        href={projectUrl}
+        class="group mt-10 grid overflow-hidden border border-slate-200 bg-white transition-shadow duration-200 hover:shadow-lg lg:grid-cols-[1.1fr_0.9fr]"
+      >
+        <figure class="relative overflow-hidden bg-slate-900">
+          <img
+            src={theKilnsProject.hero.src}
+            alt={theKilnsProject.hero.alt}
+            loading="lazy"
+            decoding="async"
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+          <span class="absolute left-5 top-5 inline-flex items-center gap-2 border border-amber-300 bg-slate-950/80 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-amber-300 backdrop-blur">
+            Featured Project
+          </span>
+        </figure>
 
-      <figure class="relative mt-10 overflow-hidden border border-slate-200 bg-slate-900">
-        <img
-          src={featuredProject.hero.src}
-          alt={featuredProject.hero.alt}
-          loading="lazy"
-          decoding="async"
-          class="h-full w-full object-cover"
-        />
-        <figcaption class="absolute bottom-0 left-0 right-0 flex flex-wrap items-end justify-between gap-3 bg-gradient-to-t from-black/75 via-black/30 to-transparent px-5 py-5 text-white">
-          <span class="text-xs font-bold uppercase tracking-[0.18em] text-amber-300">Featured Build</span>
-          <span class="text-xs font-medium uppercase tracking-[0.12em] text-slate-100">{featuredProject.scope}</span>
-        </figcaption>
-      </figure>
-
-      <div class="mt-10 grid gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
-        <article class="flex flex-col justify-between border border-slate-200 bg-white p-6 md:p-8">
+        <div class="flex flex-col justify-between gap-6 p-6 md:p-8">
           <div>
-            <p class="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">{featuredProject.video.label}</p>
-            <h3 class="mt-3 text-2xl font-black uppercase leading-tight text-slate-900">
-              See the development in motion.
+            <p class="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">
+              {theKilnsProject.client} - {theKilnsProject.year}
+            </p>
+            <h3 class="mt-3 text-3xl font-black uppercase leading-tight text-slate-900 md:text-4xl">
+              {theKilnsProject.name}
             </h3>
             <p class="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
-              {featuredProject.video.description}
+              {theKilnsProject.summary}
             </p>
+            <dl class="mt-5 grid grid-cols-3 gap-3 text-xs">
+              <div class="border border-slate-200 bg-slate-50 p-3">
+                <dt class="font-bold uppercase tracking-[0.12em] text-slate-500">Location</dt>
+                <dd class="mt-1 font-bold text-slate-900">{theKilnsProject.location}</dd>
+              </div>
+              <div class="border border-slate-200 bg-slate-50 p-3">
+                <dt class="font-bold uppercase tracking-[0.12em] text-slate-500">Year</dt>
+                <dd class="mt-1 font-bold text-slate-900">{theKilnsProject.year}</dd>
+              </div>
+              <div class="border border-slate-200 bg-slate-50 p-3">
+                <dt class="font-bold uppercase tracking-[0.12em] text-slate-500">Scope</dt>
+                <dd class="mt-1 font-bold text-slate-900">Full install</dd>
+              </div>
+            </dl>
           </div>
-          <a
-            href={`https://www.youtube.com/watch?v=${featuredProject.video.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-6 inline-flex items-center gap-2 self-start text-xs font-bold uppercase tracking-[0.14em] text-slate-900 transition-colors hover:text-blue-700"
-          >
-            Watch on YouTube
-            <span aria-hidden="true">-></span>
-          </a>
-        </article>
 
-        <div class="relative aspect-video w-full overflow-hidden border border-slate-200 bg-slate-900 shadow-sm">
-          <iframe
-            class="absolute inset-0 h-full w-full"
-            src={`https://www.youtube-nocookie.com/embed/${featuredProject.video.id}?rel=0`}
-            title={featuredProject.video.title}
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
-
-      <div class="mt-10 grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
-        <article class="border border-slate-200 bg-white p-6 md:p-8">
-          <p class="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">Scope of works</p>
-          <h3 class="mt-3 text-2xl font-black uppercase leading-tight text-slate-900">Lighting designed room by room.</h3>
-          <ul class="mt-5 space-y-3">
+          <div class="grid grid-cols-3 gap-2">
             {
-              featuredProject.highlights.map((item) => (
-                <li class="flex gap-3 border-l-2 border-amber-300 bg-slate-50 px-4 py-3 text-sm text-slate-700">
-                  <span class="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">+</span>
-                  <span>{item}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </article>
-
-        <article class="grid grid-cols-2 gap-3">
-          {
-            featuredProject.gallery.slice(0, 4).map((image) => (
-              <figure class="group relative overflow-hidden border border-slate-200 bg-slate-100">
+              teaserThumbnails.map((image) => (
                 <img
                   src={image.src}
                   alt={image.alt}
                   loading="lazy"
                   decoding="async"
-                  class="aspect-[4/5] h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  class="aspect-square h-full w-full border border-slate-200 object-cover"
                 />
-                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent p-3 text-[11px] font-bold uppercase tracking-[0.12em] text-white">
-                  {image.caption}
-                </figcaption>
-              </figure>
-            ))
-          }
-        </article>
-      </div>
+              ))
+            }
+          </div>
 
-      <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-        {
-          featuredProject.gallery.slice(4).map((image) => (
-            <figure class="group relative overflow-hidden border border-slate-200 bg-slate-100">
-              <img
-                src={image.src}
-                alt={image.alt}
-                loading="lazy"
-                decoding="async"
-                class="aspect-[3/4] h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent p-3 text-[11px] font-bold uppercase tracking-[0.12em] text-white">
-                {image.caption}
-              </figcaption>
-            </figure>
-          ))
-        }
-      </div>
+          <p class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-slate-900 transition-colors group-hover:text-blue-700">
+            View Case Study
+            <span aria-hidden="true">-></span>
+          </p>
+        </div>
+      </a>
 
       <div class="mt-10 flex flex-wrap items-center justify-between gap-4 border border-slate-200 bg-white p-5">
         <p class="text-sm text-slate-700">
